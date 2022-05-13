@@ -1,11 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type categoriesData = {
-  categoryPk: number,
-  categoryCode: string,
-  categoryName: string,
-}
+import {categoriesData} from '../../../types/communityType'
 
 export default function handler(
   req: NextApiRequest,

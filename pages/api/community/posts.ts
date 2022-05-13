@@ -1,20 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type postData = {
-  categoryPk: number,
-  categoryName: string,
-	pk: number,
-	title: string,
-	content: string,
-	viewCount: number,
-	likeCount: number,
-	commentCount: number,
-	imageUrl: string | null,
-	writtenAt: string,
-	writerNickName: string,
-	writerProfileUrl: string | null,
-}
+import {postData} from '../../../types/communityType'
 
 export default function handler(
   req: NextApiRequest,
