@@ -1,16 +1,16 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import {categoriesData} from '../../../types/communityType'
+import {categoryData} from '../../../types/communityType'
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<categoriesData[]>
+  res: NextApiResponse<categoryData[]>
 ) {
   res.status(200).json(CATEGORIES)
 }
 
-const CATEGORIES: categoriesData[] = [
+const CATEGORIES: categoryData[] = [
 	{
 		categoryPk: 1,
 		categoryCode: 'PETITION',
