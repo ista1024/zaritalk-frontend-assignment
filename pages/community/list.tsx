@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import { categoryData, postData } from "../../types/communityType";
 
+import Category from "../../components/Category";
 import Post from "../../components/Post";
 
 import styles from "../../styles/global.module.css";
@@ -27,7 +28,6 @@ const CommunityList: NextPage = () => {
     const response = await fetch("/api/community/categories");
     const categoryList = await response.json();
     setCategories(categoryList);
-    console.log("getCategories", categoryList);
   };
 
   // fetch to get post list async function
@@ -36,7 +36,6 @@ const CommunityList: NextPage = () => {
     const postList = await response.json();
     setPosts(postList);
     setFilteredPosts(postList);
-    console.log("getPosts", postList);
   };
 
   // call all async function on mount
@@ -65,7 +64,6 @@ const CommunityList: NextPage = () => {
   // category filter setter & active button
   const handleCategoryFilter = (idx: number) => {
     setCategoryFilter(idx);
-    console.log("handleCategoryFilter", idx);
   };
 
   return (
@@ -78,35 +76,11 @@ const CommunityList: NextPage = () => {
 
       <main>
         <h1 className="text-3xl font-bold">커뮤니티</h1>
-        <button
-          onClick={() => handleCategoryFilter(-1)}
-          className={`${
-            categoryFilter === -1 ? "bg-blue-500" : "bg-transparent"
-          } hover:bg-blue-700 border border-blue-500 hover:text-white font-bold py-2 px-4 rounded-full`}
-        >
-          전체
-        </button>
-        <button
-          onClick={() => handleCategoryFilter(0)}
-          className={`${
-            categoryFilter === 0 ? "bg-blue-500" : "bg-transparent"
-          } hover:bg-blue-700 border border-blue-500 hover:text-white font-bold py-2 px-4 rounded-full`}
-        >
-          인기
-        </button>
-        {categories.map((category, idx) => (
-          <button
-            key={`category ${category.categoryPk}`}
-            onClick={() => handleCategoryFilter(category.categoryPk)}
-            className={`${
-              categoryFilter === category.categoryPk
-                ? "bg-blue-500"
-                : "bg-transparent"
-            } hover:bg-blue-700 border border-blue-500 hover:text-white font-bold py-2 px-4 rounded-full`}
-          >
-            {category.categoryName}
-          </button>
-        ))}
+        <Category
+          data={categories}
+          handleCategoryFilter={handleCategoryFilter}
+          categoryFilter={categoryFilter}
+        />
         {filteredPosts.map((post) => (
           <Post key={`Post ${post.pk}`} data={post}></Post>
         ))}
