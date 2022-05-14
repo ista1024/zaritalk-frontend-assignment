@@ -77,7 +77,7 @@ const CommunityList: NextPage = () => {
       <main>
         <h1 className="text-3xl font-bold">커뮤니티</h1>
         <Category
-          data={categories}
+          categories={categories}
           handleCategoryFilter={handleCategoryFilter}
           categoryFilter={categoryFilter}
         />

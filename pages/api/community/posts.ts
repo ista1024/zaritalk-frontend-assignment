@@ -7,7 +7,13 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<postData[]>
 ) {
-  res.status(200).json(POSTS)
+	if(!!req.body) {
+		const reqBody = JSON.parse(req.body);
+		const rtn = POSTS.filter(post => post.pk === Number(reqBody.post_pk));
+		res.status(200).json(rtn);
+	}else {
+		res.status(200).json(POSTS);
+	}
 }
 
 const POSTS: postData[] = [

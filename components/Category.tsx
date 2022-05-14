@@ -1,24 +1,19 @@
-import { useState, useEffect } from "react";
 import type { NextPage } from "next";
-
 import { categoryData } from "../types/communityType";
 
 interface categoryProps {
-  data: categoryData[];
+  categories: categoryData[];
   handleCategoryFilter: (idx: number) => void;
   categoryFilter: number;
 }
 
 const Category: NextPage<categoryProps> = ({
-  data,
+  categories,
   handleCategoryFilter,
   categoryFilter,
 }: categoryProps) => {
-  const [categories, setCategories] = useState<categoryData[]>(data);
-  const [isButtonClicked, setIsButtonClicked] = useState<number>(0);
-
   return (
-    <div className="flex flex-col">
+    <div className="flex w-full">
       <button
         onClick={() => handleCategoryFilter(-1)}
         className={`${
