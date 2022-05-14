@@ -1,6 +1,11 @@
 # zaritalk-frontend-assignment
 
-
+## Mock Server
+Next.js 를 활용한 REST API 구현
+```tsx
+npm run start // 로 서버를 올리면 
+"/api/**/*" // 등으로 요청 가능
+```
 
 
 
