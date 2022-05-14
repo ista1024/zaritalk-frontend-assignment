@@ -6,11 +6,29 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "../../../../styles/Home.module.css";
 
+import { postData } from "../../../../types/communityType";
+import PostDetail from "../../../../components/PostDetail";
+
+const emptyPost: postData = {
+  categoryPk: -1,
+  categoryName: "",
+  pk: -1,
+  title: " ",
+  content: " ",
+  viewCount: -1,
+  likeCount: -1,
+  commentCount: -1,
+  imageUrl: null,
+  writtenAt: " ",
+  writerNickName: " ",
+  writerProfileUrl: null,
+};
+
 const Home: NextPage = () => {
   const router = useRouter();
   const { post_pk } = router.query;
 
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState<postData>(emptyPost);
 
   // fetch to get post list async function
   const getPosts = async () => {
@@ -25,10 +43,12 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      await Promise.all([getPosts()]);
-    })();
-  }, []);
+    if (!!post_pk && post.pk === -1) {
+      (async () => {
+        await Promise.all([getPosts()]);
+      })();
+    }
+  }, [post_pk]);
 
   return (
     <div className={styles.container}>
@@ -39,6 +59,14 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        {!!post && post.pk !== -1 ? (
+          <>
+            {console.log("post", post)}
+            <PostDetail data={post} />
+          </>
+        ) : (
+          <div>없는 포스트입니다.</div>
+        )}
         <h1 className="text-3xl font-bold underline">{post_pk}</h1>
       </main>
     </div>

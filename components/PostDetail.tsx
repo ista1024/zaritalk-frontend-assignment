@@ -14,7 +14,7 @@ interface postProps {
   data: postData;
 }
 
-const Post: NextPage<postProps> = ({ data }: postProps) => {
+const PostDetail: NextPage<postProps> = ({ data }: postProps) => {
   const [isButtonClicked, setIsButtonClicked] = useState<number>(0);
   const [post, setPost] = useState<postData>(data);
 
@@ -50,7 +50,7 @@ const Post: NextPage<postProps> = ({ data }: postProps) => {
       </div>
       <div>
         <p>{post.title}</p>
-        <p>{post.content.substring(0, 50)}</p>
+        <p>{post.content}</p>
       </div>
       {!!post.imageUrl ? (
         <div>
@@ -64,8 +64,6 @@ const Post: NextPage<postProps> = ({ data }: postProps) => {
         </div>
       ) : null}
       <div className="flex text-grey-300">
-        <MdVisibility className="text-grey-300" />
-        <span>{post.viewCount}</span>
         <div onClick={() => handleLikes()}>
           {likes ? <MdThumbUp /> : <MdThumbUpOffAlt />}
         </div>
@@ -77,4 +75,4 @@ const Post: NextPage<postProps> = ({ data }: postProps) => {
   );
 };
 
-export default Post;
+export default PostDetail;

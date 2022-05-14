@@ -5,11 +5,11 @@ import {postData} from '../../../types/communityType'
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<postData[]>
+  res: NextApiResponse<postData| postData[]>
 ) {
 	if(!!req.body) {
 		const reqBody = JSON.parse(req.body);
-		const rtn = POSTS.filter(post => post.pk === Number(reqBody.post_pk));
+		const rtn = POSTS.filter(post => post.pk === Number(reqBody.post_pk))[0];
 		res.status(200).json(rtn);
 	}else {
 		res.status(200).json(POSTS);

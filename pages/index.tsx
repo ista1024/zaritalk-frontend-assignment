@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         <Link href="/community/list">
           <a>Community List</a>
         </Link>
-        <Link href="/community">
+        <Link href="/community/post/1">
           <a>Community Detail</a>
         </Link>
         <Link href="/community/post/new">
