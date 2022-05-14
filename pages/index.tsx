@@ -15,54 +15,31 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className="text-3xl font-bold underline">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          <a href="https://nextjs.org">김용태 자리톡 프론트엔드 과제</a>
         </h1>
+
+        <p className={styles.description}>
+          <p>
+            아래 링크를 클릭하거나 직접 url을 입력하여 페이지 이동이 가능합니다.
+          </p>
+          <p>해당 과제는 Next.js, tailwindCss, TypeScript 로 구현되었습니다.</p>
+          <p>Mock API는 Next.js의 api 모듈을 사용했으며 </p>
+          <p>
+            {`"/api/community/["categories", "posts", "posts/:post_pk"]`}로 요청
+            가능합니다.
+          </p>
+        </p>
 
         <p className={styles.description}></p>
         <Link href="/community/list">
-          <a>Community List</a>
+          <a>Community List {`"/community/list"`}</a>
         </Link>
         <Link href="/community/post/1">
-          <a>Community Detail</a>
+          <a>Community Detail {`"/community/post/:post_pk"`}</a>
         </Link>
         <Link href="/community/post/new">
-          <a>Community New</a>
+          <a>Community New {`"/community/post/new"`}</a>
         </Link>
-
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
       </main>
 
       <footer className={styles.footer}>
