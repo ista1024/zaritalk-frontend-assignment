@@ -1,23 +1,25 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState, useEffect } from "react";
 
 import Link from "next/Link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 
 import { categoryData, postData } from "../../types/communityType";
-import styles from "../../styles/Home.module.css";
+
+import Post from "../../components/post";
 
 // component  구성
 /* header
  * Community category
  * Community list item
  */
-const Home: NextPage = () => {
+const CommunityList: NextPage = () => {
   const [categories, setCategories] = useState<categoryData[]>([]);
   const [posts, setPosts] = useState<postData[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<postData[]>([]);
   const [isButtonClicked, setIsButtonClicked] = useState<number>(0);
-  const [categoryFilter, setCategoryFilter] = useState<string>("");
+  const [categoryFilter, setCategoryFilter] = useState<number>(-1);
 
   // fetch to get category list async function
   const getCategories = async () => {
@@ -32,6 +34,7 @@ const Home: NextPage = () => {
     const response = await fetch("/api/community/posts");
     const postList = await response.json();
     setPosts(postList);
+    setFilteredPosts(postList);
     console.log("getPosts", postList);
   };
 
@@ -43,11 +46,25 @@ const Home: NextPage = () => {
     console.log("Home");
   }, []);
 
+  // 필터가 변경될 때 해당 필터가 포함되는
+  useEffect(() => {
+    let filteredPostList: postData[] = [];
+    if (categoryFilter === -1) {
+      filteredPostList = posts;
+    } else if (categoryFilter === 0) {
+      filteredPostList = posts.filter((post) => post.viewCount >= 100);
+    } else {
+      filteredPostList = posts.filter(
+        (post) => post.categoryPk === categoryFilter
+      );
+    }
+    setFilteredPosts(filteredPostList);
+  }, [categoryFilter]);
+
   // category filter setter & active button
-  const handleCategoryFilter = (category: string, idx: number) => {
-    setCategoryFilter(category);
-    setIsButtonClicked(idx);
-    console.log("handleCategoryFilter", category, idx);
+  const handleCategoryFilter = (idx: number) => {
+    setCategoryFilter(idx);
+    console.log("handleCategoryFilter", idx);
   };
 
   return (
@@ -59,13 +76,31 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h1 className="text-3xl font-bold underline">Community List</h1>
+        <h1 className="text-3xl font-bold">커뮤니티</h1>
+        <button
+          onClick={() => handleCategoryFilter(-1)}
+          className={`${
+            categoryFilter === -1 ? "bg-blue-500" : "bg-transparent"
+          } hover:bg-blue-700 border border-blue-500 hover:text-white font-bold py-2 px-4 rounded-full`}
+        >
+          전체
+        </button>
+        <button
+          onClick={() => handleCategoryFilter(0)}
+          className={`${
+            categoryFilter === 0 ? "bg-blue-500" : "bg-transparent"
+          } hover:bg-blue-700 border border-blue-500 hover:text-white font-bold py-2 px-4 rounded-full`}
+        >
+          인기
+        </button>
         {categories.map((category, idx) => (
           <button
-            key={category.categoryPk}
-            onClick={() => handleCategoryFilter(category.categoryCode, idx)}
+            key={`category ${category.categoryPk}`}
+            onClick={() => handleCategoryFilter(category.categoryPk)}
             className={`${
-              isButtonClicked === idx ? "bg-blue-500" : "bg-transparent"
+              categoryFilter === category.categoryPk
+                ? "bg-blue-500"
+                : "bg-transparent"
             } hover:bg-blue-700 border border-blue-500 hover:text-white font-bold py-2 px-4 rounded-full`}
           >
             {category.categoryName}
@@ -74,20 +109,14 @@ const Home: NextPage = () => {
         <div>
           <p>{categoryFilter}</p>
         </div>
-        {posts.map((post) => (
-          <p key={post.pk}>
-            <Link
-              key={post.pk}
-              href="/community/post/[post]"
-              as={`/community/post/${post.categoryPk}`}
-            >
-              <a>{post.title}</a>
-            </Link>
-          </p>
+        {filteredPosts.map((post) => (
+          <>
+            <Post key={`Post ${post.pk}`} data={post}></Post>
+          </>
         ))}
       </main>
     </div>
   );
 };
 
-export default Home;
+export default CommunityList;
