@@ -1,4 +1,4 @@
-export type categoriesData = {
+export type categoryData = {
   categoryPk: number,
   categoryCode: string,
   categoryName: string,
