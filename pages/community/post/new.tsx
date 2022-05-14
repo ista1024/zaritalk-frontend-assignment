@@ -30,6 +30,7 @@ const Home: NextPage = () => {
         <div>
           <textarea placeholder={contentPlaceHolder} />
         </div>
+        <button>사진</button>
       </main>
     </div>
   );
