@@ -36,22 +36,26 @@ const Post: NextPage<postProps> = ({ data }: postProps) => {
   return (
     <div className="flex flex-col">
       {/* <div>{post.pk}</div> */}
-      <div>
-        <Image
-          src={imgSrc(post.writerProfileUrl)}
-          width={30}
-          height={30}
-          alt="profile"
-        />
-        <p className="text-grey-300">{post.writerNickName}</p>
-        <p className="text-grey-300">
-          {post.categoryName} ㆍ {} 분전
-        </p>
-      </div>
-      <div>
-        <p>{post.title}</p>
-        <p>{post.content.substring(0, 50)}</p>
-      </div>
+      <Link href={`/community/post/${post.pk}`}>
+        <div>
+          <div>
+            <Image
+              src={imgSrc(post.writerProfileUrl)}
+              width={30}
+              height={30}
+              alt="profile"
+            />
+            <p className="text-grey-300">{post.writerNickName}</p>
+            <p className="text-grey-300">
+              {post.categoryName} ㆍ {} 분전
+            </p>
+          </div>
+          <div>
+            <p>{post.title}</p>
+            <p>{post.content.substring(0, 50)}</p>
+          </div>
+        </div>
+      </Link>
       {!!post.imageUrl ? (
         <div>
           <Image
