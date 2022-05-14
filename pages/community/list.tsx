@@ -1,13 +1,14 @@
+import { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState, useEffect } from "react";
-
 import Link from "next/Link";
 import Image from "next/image";
 
 import { categoryData, postData } from "../../types/communityType";
 
-import Post from "../../components/post";
+import Post from "../../components/Post";
+
+import styles from "../../styles/global.module.css";
 
 // component  구성
 /* header
@@ -68,7 +69,7 @@ const CommunityList: NextPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Head>
         <title>커뮤니티_홈</title>
         <meta name="description" content="커뮤니티_홈" />
@@ -106,14 +107,10 @@ const CommunityList: NextPage = () => {
             {category.categoryName}
           </button>
         ))}
-        <div>
-          <p>{categoryFilter}</p>
-        </div>
         {filteredPosts.map((post) => (
-          <>
-            <Post key={`Post ${post.pk}`} data={post}></Post>
-          </>
+          <Post key={`Post ${post.pk}`} data={post}></Post>
         ))}
+        <button></button>
       </main>
     </div>
   );
