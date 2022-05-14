@@ -1,13 +1,15 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import {postData} from '../../../types/communityType'
+import {postData} from '../../../../types/communityType'
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<postData| postData[]>
 ) {
-	res.status(200).json(POSTS);
+	const { post_pk } = req.query
+	const rtn = POSTS.filter(post => post.pk === Number(post_pk))[0];
+	res.status(200).json(rtn);
 }
 
 const POSTS: postData[] = [
