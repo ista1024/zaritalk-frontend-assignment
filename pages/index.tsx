@@ -10,7 +10,7 @@ const Home: NextPage = () => {
         <title>김용태 자리톡 프론트엔드 과제</title>
         <meta
           name="description"
-          content="Next app with typescript and tailwind CSS"
+          content="Zaritalk front end assignment with Next app with typescript and tailwind CSS"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
