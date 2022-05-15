@@ -65,23 +65,27 @@ const CommunityList: NextPage = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className="flex justify-center mt-8 ">
       <Head>
         <title>커뮤니티_홈</title>
         <meta name="description" content="커뮤니티_홈" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1 className="text-3xl font-bold">커뮤니티</h1>
-        <Category
-          categories={categories}
-          handleCategoryFilter={handleCategoryFilter}
-          categoryFilter={categoryFilter}
-        />
-        {filteredPosts.map((post) => (
-          <Post key={`Post ${post.pk}`} data={post}></Post>
-        ))}
+      <main className="flex flex-col justify-center w-96">
+        <h1 className="text-3xl font-bold mt-8">커뮤니티</h1>
+        <div className="mt-8 overflow-hidden">
+          <Category
+            categories={categories}
+            handleCategoryFilter={handleCategoryFilter}
+            categoryFilter={categoryFilter}
+          />
+        </div>
+        <div className="mt-8">
+          {filteredPosts.map((post) => (
+            <Post key={`Post ${post.pk}`} data={post}></Post>
+          ))}
+        </div>
         <button></button>
       </main>
     </div>
