@@ -38,17 +38,21 @@ const Post: NextPage<postProps> = ({ data }: postProps) => {
       {/* <div>{post.pk}</div> */}
       <Link href={`/community/post/${post.pk}`}>
         <div>
-          <div>
-            <Image
-              src={imgSrc(post.writerProfileUrl)}
-              width={30}
-              height={30}
-              alt="profile"
-            />
-            <p className="text-grey-300">{post.writerNickName}</p>
-            <p className="text-grey-300">
-              {post.categoryName} ㆍ {} 분전
-            </p>
+          <div className="flex align-center">
+            <div className="flex self-center mx-2">
+              <Image
+                src={imgSrc(post.writerProfileUrl)}
+                width={30}
+                height={30}
+                alt="profile"
+              />
+            </div>
+            <div>
+              <p className="text-gray-300 text-xs">{post.writerNickName}</p>
+              <p className="text-gray-300 text-xs">
+                {post.categoryName} ㆍ {} 분전
+              </p>
+            </div>
           </div>
           <div>
             <p>{post.title}</p>
@@ -67,8 +71,8 @@ const Post: NextPage<postProps> = ({ data }: postProps) => {
           />
         </div>
       ) : null}
-      <div className="flex text-grey-300">
-        <MdVisibility className="text-grey-300" />
+      <div className="flex text-gray-300">
+        <MdVisibility className="text-gray-300" />
         <span>{post.viewCount}</span>
         <div onClick={() => handleLikes()}>
           {likes ? <MdThumbUp /> : <MdThumbUpOffAlt />}

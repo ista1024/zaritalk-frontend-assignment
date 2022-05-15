@@ -32,7 +32,7 @@ const CategoryButton: NextPage<categoryButtonProps> = ({
       className={`${
         categoryFilter === filterIdx
           ? "bg-blue-500 text-white border-blue-500"
-          : "bg-transparent border-grey-500 text-gray-400"
+          : "bg-transparent border-gray-500 text-gray-400"
       } hover:bg-blue-700 border hover:text-white font-bold py-2 px-4 mx-1 rounded-full`}
     >
       {filterIdx === -1 ? (

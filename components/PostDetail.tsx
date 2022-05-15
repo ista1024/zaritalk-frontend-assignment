@@ -43,8 +43,8 @@ const PostDetail: NextPage<postProps> = ({ data }: postProps) => {
           height={30}
           alt="profile"
         />
-        <p className="text-grey-300">{post.writerNickName}</p>
-        <p className="text-grey-300">
+        <p className="text-gray-300">{post.writerNickName}</p>
+        <p className="text-gray-300">
           {post.categoryName} ㆍ {} 분전
         </p>
       </div>
@@ -63,7 +63,7 @@ const PostDetail: NextPage<postProps> = ({ data }: postProps) => {
           />
         </div>
       ) : null}
-      <div className="flex text-grey-300">
+      <div className="flex text-gray-300">
         <div onClick={() => handleLikes()}>
           {likes ? <MdThumbUp /> : <MdThumbUpOffAlt />}
         </div>
