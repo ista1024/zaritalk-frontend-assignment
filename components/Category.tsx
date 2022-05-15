@@ -2,6 +2,9 @@ import type { NextPage } from "next";
 import { categoryData } from "../types/communityType";
 import { useState, useRef } from "react";
 
+import { IconContext } from "react-icons";
+import { MdStar } from "react-icons/md";
+
 interface categoryProps {
   categories: categoryData[];
   handleCategoryFilter: (idx: number) => void;
@@ -28,15 +31,39 @@ const CategoryButton: NextPage<categoryButtonProps> = ({
       onClick={() => handleCategoryFilter(filterIdx)}
       className={`${
         categoryFilter === filterIdx
-          ? "bg-blue-500  text-white border-blue-500"
-          : "bg-transparent border-grey-500"
+          ? "bg-blue-500 text-white border-blue-500"
+          : "bg-transparent border-grey-500 text-gray-400"
       } hover:bg-blue-700 border hover:text-white font-bold py-2 px-4 mx-1 rounded-full`}
     >
-      {filterIdx === -1
-        ? "전체"
-        : filterIdx === 0
-        ? "인기글"
-        : category?.categoryName}
+      {filterIdx === -1 ? (
+        "전체"
+      ) : filterIdx === 0 ? (
+        <>
+          <svg width="0" height="0">
+            <linearGradient
+              id="yellow-gradient"
+              x1="100%"
+              y1="100%"
+              x2="0%"
+              y2="0%"
+            >
+              <stop stopColor="#d7a958" offset="0%" />
+              <stop stopColor="#fffaba" offset="100%" />
+            </linearGradient>
+          </svg>
+          <IconContext.Provider
+            value={{
+              size: "1.2rem",
+              attr: { fill: "url('#yellow-gradient')" },
+            }}
+          >
+            <MdStar className="inline" />
+            인기글
+          </IconContext.Provider>
+        </>
+      ) : (
+        category?.categoryName
+      )}
     </button>
   );
 };
