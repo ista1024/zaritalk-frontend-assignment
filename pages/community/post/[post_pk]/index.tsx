@@ -34,7 +34,6 @@ const Home: NextPage = () => {
   const getPosts = async () => {
     const response = await fetch(`/api/community/posts/${post_pk}`);
     const data = await response.json();
-    console.log(data);
     setPost(data);
     // setFilteredPosts(postList);
   };
@@ -58,7 +57,6 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         {!!post && post.pk !== -1 ? (
           <>
-            {console.log("post", post)}
             <PostDetail data={post} />
           </>
         ) : (

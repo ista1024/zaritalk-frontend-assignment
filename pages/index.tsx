@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -18,7 +17,7 @@ const Home: NextPage = () => {
           <a href="https://nextjs.org">김용태 자리톡 프론트엔드 과제</a>
         </h1>
 
-        <p className={styles.description}>
+        <div className={styles.description}>
           <p>
             아래 링크를 클릭하거나 직접 url을 입력하여 페이지 이동이 가능합니다.
           </p>
@@ -28,7 +27,7 @@ const Home: NextPage = () => {
             {`"/api/community/["categories", "posts", "posts/:post_pk"]`}로 요청
             가능합니다.
           </p>
-        </p>
+        </div>
 
         <p className={styles.description}></p>
         <Link href="/community/list">
@@ -41,19 +40,6 @@ const Home: NextPage = () => {
           <a>Community New {`"/community/post/new"`}</a>
         </Link>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   );
 };

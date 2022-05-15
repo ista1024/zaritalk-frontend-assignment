@@ -20,7 +20,6 @@ const CommunityList: NextPage = () => {
   const [categories, setCategories] = useState<categoryData[]>([]);
   const [posts, setPosts] = useState<postData[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<postData[]>([]);
-  const [isButtonClicked, setIsButtonClicked] = useState<number>(0);
   const [categoryFilter, setCategoryFilter] = useState<number>(-1);
 
   // fetch to get category list async function
@@ -43,7 +42,6 @@ const CommunityList: NextPage = () => {
     (async () => {
       await Promise.all([getCategories(), getPosts()]);
     })();
-    console.log("Home");
   }, []);
 
   // 필터가 변경될 때 해당 필터가 포함되는
