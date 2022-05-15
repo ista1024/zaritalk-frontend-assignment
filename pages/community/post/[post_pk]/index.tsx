@@ -32,10 +32,7 @@ const Home: NextPage = () => {
 
   // fetch to get post list async function
   const getPosts = async () => {
-    const response = await fetch("/api/community/posts", {
-      method: "POST",
-      body: JSON.stringify({ post_pk }),
-    });
+    const response = await fetch(`/api/community/posts/${post_pk}`);
     const data = await response.json();
     console.log(data);
     setPost(data);
