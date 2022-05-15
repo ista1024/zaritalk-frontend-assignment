@@ -81,12 +81,19 @@ const CommunityList: NextPage = () => {
             categoryFilter={categoryFilter}
           />
         </div>
-        <div className="mt-8">
+        <div className="mt-8 bg-gray-200">
           {filteredPosts.map((post) => (
             <Post key={`Post ${post.pk}`} data={post}></Post>
           ))}
         </div>
-        <button></button>
+        <Link href={"/community/post/new"}>
+          <button
+            className="fixed bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            style={{ left: "60vw", bottom: "5rem" }}
+          >
+            글쓰기
+          </button>
+        </Link>
       </main>
     </div>
   );
