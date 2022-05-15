@@ -33,12 +33,31 @@ const Post: NextPage<postProps> = ({ data }: postProps) => {
     return url ? url : "";
   };
 
+  // 작성 시간 파서
+  const compareDate = (date: string) => {
+    const dateObj = new Date(date);
+    const now = new Date();
+    const diff = now.getTime() - dateObj.getTime();
+    const day = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hour = Math.floor(diff / (1000 * 60 * 60));
+    const minute = Math.floor(diff / (1000 * 60));
+    if (day > 0) {
+      return date.slice(2, 10);
+    } else if (hour > 0) {
+      return `${hour}시간 전`;
+    } else if (minute > 0) {
+      return `${minute}분 전`;
+    } else {
+      return `방금 전`;
+    }
+  };
+
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-1 py-4 bg-white cursor-pointer">
       {/* <div>{post.pk}</div> */}
       <Link href={`/community/post/${post.pk}`}>
         <div>
-          <div className="flex align-center">
+          <div className="flex align-center my-2">
             <div className="flex self-center mx-2">
               <Image
                 src={imgSrc(post.writerProfileUrl)}
@@ -48,38 +67,53 @@ const Post: NextPage<postProps> = ({ data }: postProps) => {
               />
             </div>
             <div>
-              <p className="text-gray-300 text-xs">{post.writerNickName}</p>
-              <p className="text-gray-300 text-xs">
-                {post.categoryName} ㆍ {} 분전
+              <p className="text-xs">{post.writerNickName}</p>
+              <p className="text-gray-400 text-xs">
+                {post.categoryName} ㆍ {compareDate(post.writtenAt)}
               </p>
             </div>
           </div>
-          <div>
-            <p>{post.title}</p>
-            <p>{post.content.substring(0, 50)}</p>
+          <div className="my-2">
+            <p className="font-semibold mt-4">
+              {post.title.length > 26
+                ? `${post.title.substring(0, 26)}...`
+                : post.title}
+            </p>
+            <p className="text-xs text-gray-400 my-2">
+              {post.content.length > 70
+                ? `${post.content.substring(0, 70)}...`
+                : post.content}
+            </p>
           </div>
         </div>
       </Link>
       {!!post.imageUrl ? (
-        <div>
+        <div className="my-2 w-full relative" style={{ height: "160px" }}>
           <Image
             src={imgSrc(post.imageUrl)}
-            width="100%"
-            height={160}
+            layout="fill"
             alt="post"
             objectFit="cover"
           />
         </div>
       ) : null}
-      <div className="flex text-gray-300">
-        <MdVisibility className="text-gray-300" />
-        <span>{post.viewCount}</span>
-        <div onClick={() => handleLikes()}>
-          {likes ? <MdThumbUp /> : <MdThumbUpOffAlt />}
+      <div className="flex text-gray-300 align-center">
+        <div className="flex mx-2">
+          <MdVisibility className="text-gray-300 self-center" />
+          <span className="mx-2">{post.viewCount}</span>
         </div>
-        <span>{likesCount}</span>
-        <BsChatDots />
-        <span>{post.commentCount}</span>
+        <div className="flex mx-2" onClick={() => handleLikes()}>
+          {likes ? (
+            <MdThumbUp className="self-center" />
+          ) : (
+            <MdThumbUpOffAlt className="self-center" />
+          )}
+          <span className="mx-2">{likesCount}</span>
+        </div>
+        <div className="flex mx-2">
+          <BsChatDots className="self-center" />
+          <span className="mx-2">{post.commentCount}</span>
+        </div>
       </div>
     </div>
   );
