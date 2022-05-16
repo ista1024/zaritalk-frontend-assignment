@@ -33,6 +33,22 @@ const PostDetail: NextPage<postProps> = ({ data }: postProps) => {
     return url ? url : "";
   };
 
+  // 링크 파서
+  const createLinkFromText = (text: string) => {
+    const regex = /(https?:\/\/[^\s]+)/g;
+    const match = text.match(regex);
+    if (match) {
+      const link = `<a className="underline decoration-sky-500" href=${match[0]}>${match[0]}</a>`;
+      return text.replace(match[0], link);
+    } else {
+      return "";
+    }
+  };
+
+  (() => {
+    createLinkFromText(post.content);
+  })();
+
   return (
     <div className="flex flex-col">
       {/* <div>{post.pk}</div> */}
@@ -50,7 +66,9 @@ const PostDetail: NextPage<postProps> = ({ data }: postProps) => {
       </div>
       <div>
         <p>{post.title}</p>
-        <p>{post.content}</p>
+        <div
+          dangerouslySetInnerHTML={{ __html: createLinkFromText(post.content) }}
+        ></div>
       </div>
       {!!post.imageUrl ? (
         <div>
