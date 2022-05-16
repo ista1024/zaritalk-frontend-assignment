@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import Link from "next/Link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 import { postData } from "../types/communityType";
 

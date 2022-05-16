@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import Link from "next/Link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 import { postData } from "../types/communityType";
 
@@ -9,7 +9,9 @@ import { postData } from "../types/communityType";
 import { MdVisibility, MdThumbUp, MdThumbUpOffAlt } from "react-icons/md";
 // BsChatDotsFill: 댓글 색, BsChatDots: 댓글 테두리
 import { BsChatDotsFill, BsChatDots } from "react-icons/bs";
-import {compareDate} from "../utils/util";
+import { compareDate } from "../utils/util";
+
+import styles from "../styles/global.module.css";
 
 interface postProps {
   data: postData;
@@ -42,7 +44,7 @@ const PostDetail: NextPage<postProps> = ({ data }: postProps) => {
       const link = `<a className="underline decoration-sky-500" href=${match[0]}>${match[0]}</a>`;
       return text.replace(match[0], link);
     } else {
-      return "";
+      return text;
     }
   };
 
@@ -51,44 +53,58 @@ const PostDetail: NextPage<postProps> = ({ data }: postProps) => {
   })();
 
   return (
-    <div className="flex flex-col">
+    <div className={"flex flex-col  mb-1 py-4 bg-white "}>
       {/* <div>{post.pk}</div> */}
       <div>
-        <Image
-          src={imgSrc(post.writerProfileUrl)}
-          width={30}
-          height={30}
-          alt="profile"
-        />
-        <p className="text-gray-300">{post.writerNickName}</p>
-        <p className="text-gray-300">
-          {post.categoryName}  ㆍ {compareDate(post.writtenAt)
-        </p>
-      </div>
-      <div>
-        <p>{post.title}</p>
-        <div
-          dangerouslySetInnerHTML={{ __html: createLinkFromText(post.content) }}
-        ></div>
+        <div className="flex align-center my-2">
+          <div className="flex self-center mx-2">
+            <Image
+              src={imgSrc(post.writerProfileUrl)}
+              width={30}
+              height={30}
+              alt="profile"
+            />
+          </div>
+          <div>
+            <p className="text-gray text-xs">{post.writerNickName}</p>
+            <p className="text-gray-400 text-xs">
+              {post.categoryName} ㆍ {compareDate(post.writtenAt)}
+            </p>
+          </div>
+        </div>
+        <div className="my-2">
+          <p className="font-semibold mt-4">{post.title}</p>
+          <div
+            className="text-sm text-gray-500 my-2"
+            dangerouslySetInnerHTML={{
+              __html: createLinkFromText(post.content),
+            }}
+          ></div>
+        </div>
       </div>
       {!!post.imageUrl ? (
-        <div>
+        <div className="my-2 w-full relative">
           <Image
             src={imgSrc(post.imageUrl)}
-            width="100%"
-            height={160}
+            layout="fill"
             alt="post"
             objectFit="cover"
           />
         </div>
       ) : null}
-      <div className="flex text-gray-300">
-        <div onClick={() => handleLikes()}>
-          {likes ? <MdThumbUp /> : <MdThumbUpOffAlt />}
+      <div className="flex text-gray-500  align-center">
+        <div className="flex mx-2" onClick={() => handleLikes()}>
+          {likes ? (
+            <MdThumbUp className="self-center" />
+          ) : (
+            <MdThumbUpOffAlt className="self-center" />
+          )}
+          <span className="mx-2">{likesCount}</span>
         </div>
-        <span>{likesCount}</span>
-        <BsChatDots />
-        <span>{post.commentCount}</span>
+        <div className="flex mx-2">
+          <BsChatDots className="self-center" />
+          <span className="mx-2">{post.commentCount}</span>
+        </div>
       </div>
     </div>
   );

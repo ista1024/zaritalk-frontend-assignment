@@ -53,7 +53,7 @@ const CategoryButton: NextPage<categoryButtonProps> = ({
           </svg>
           <IconContext.Provider
             value={{
-              size: "1.2rem",
+              size: "20px",
               attr: { fill: "url('#yellow-gradient')" },
             }}
           >

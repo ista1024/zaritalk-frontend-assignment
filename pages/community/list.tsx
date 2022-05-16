@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/Link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 import { categoryData, postData } from "../../types/communityType";
 
