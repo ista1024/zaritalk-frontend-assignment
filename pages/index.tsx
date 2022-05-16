@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -32,7 +33,6 @@ const Home: NextPage = () => {
           </p>
         </div>
 
-        <p className={styles.description}></p>
         <Link href="/community/list">
           <a>Community List {`"/community/list"`}</a>
         </Link>
@@ -42,6 +42,28 @@ const Home: NextPage = () => {
         <Link href="/community/post/new">
           <a>Community New {`"/community/post/new"`}</a>
         </Link>
+        <div className="w-3/4 mt-9">
+          <p className={styles.description}>해당 과제에 관한 부가 설명</p>
+          <p className="my-1">
+            1. 페이지 전환 시 스크롤 높이 유지는 로컬스토리지(상태관리
+            라이브러리 등) 전역변수에 clientY 저장하고, useEffect로 mount시
+            scrollY로 구현할 예정이었습니다.
+          </p>
+          <p className="my-2">
+            2. viewCount와 좋아요 상태 유지는 실제로 api 통신을 통해 서버에서
+            값을 증가시켜야 하므로, 클라이언트에서 증가시킨 값을 유지하는 것이
+            아닌, API 통신 코드예제를 작성하였습니다.
+          </p>
+          <p className="my-2">
+            3. 새로운 글 작성도 같은 방식으로 작성하였습니다.
+          </p>
+          <p className="my-2">
+            4. 새로운 글 작성시 사진의 추가는 현재 업로드한 사진의 갯수로
+            input을 생성하고 사진 추가 버튼 클릭 시 마지막 input을 클릭하며,
+            업로드 자료는 array로 저장하고, 삭제는 해당 input의 index로 삭제하는
+            것으로 구현할 예정이었습니다.
+          </p>
+        </div>
       </main>
     </div>
   );

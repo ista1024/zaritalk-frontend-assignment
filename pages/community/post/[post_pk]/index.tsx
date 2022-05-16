@@ -23,7 +23,7 @@ const emptyPost: postData = {
   writerProfileUrl: null,
 };
 
-const Home: NextPage = () => {
+const PostIndex: NextPage = () => {
   const router = useRouter();
   const { post_pk } = router.query;
 
@@ -73,4 +73,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default PostIndex;

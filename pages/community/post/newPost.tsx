@@ -6,7 +6,7 @@ import { useState, useRef } from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { ImFilePicture } from "react-icons/im";
 
-const Home: NextPage = () => {
+const NewPost: NextPage = () => {
   const router = useRouter();
 
   const [image, setImage] = useState(null);
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
       const i = event.target.files[0];
 
       setImage(i);
-      setCreateObjectURL(URL.createObjectURL(i));
+      // setCreateObjectURL(URL.createObjectURL(i));
     }
   };
   const contentPlaceHolder: string = `내용을 작성해주세요.\n
@@ -93,4 +93,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default NewPost;
