@@ -1,14 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import { useState, useEffect } from "react";
-
-import styles from "../../../../styles/global.module.css";
 
 import { postData } from "../../../../types/communityType";
 import PostDetail from "../../../../components/PostDetail";
+
+import { MdKeyboardBackspace } from "react-icons/md";
 
 const emptyPost: postData = {
   categoryPk: -1,
@@ -56,6 +54,13 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={"flex flex-col justify-center w-96"}>
+        <div
+          className={"flex items-center cursor-pointer"}
+          onClick={() => router.back()}
+        >
+          <MdKeyboardBackspace className={"text-2xl"} />
+          <span className={"text-gray-400 mx-2"}>글 목록으로</span>
+        </div>
         {!!post && post.pk !== -1 ? (
           <>
             <PostDetail data={post} />
@@ -63,7 +68,6 @@ const Home: NextPage = () => {
         ) : (
           <div>없는 포스트입니다.</div>
         )}
-        <h1 className="text-3xl font-bold underline">{post_pk}</h1>
       </main>
     </div>
   );

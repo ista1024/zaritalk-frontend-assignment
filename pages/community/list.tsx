@@ -1,15 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/Link";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 
 import { categoryData, postData } from "../../types/communityType";
 
 import Category from "../../components/Category";
 import Post from "../../components/Post";
-
-import styles from "../../styles/global.module.css";
 
 // component  구성
 /* header
@@ -74,7 +71,7 @@ const CommunityList: NextPage = () => {
 
       <main className="flex flex-col justify-center w-96">
         <h1 className="text-3xl font-bold mt-8">커뮤니티</h1>
-        <div className="mt-8 overflow-hidden">
+        <div className="px-2 mt-8 overflow-hidden">
           <Category
             categories={categories}
             handleCategoryFilter={handleCategoryFilter}
