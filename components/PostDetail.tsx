@@ -9,6 +9,7 @@ import { postData } from "../types/communityType";
 import { MdVisibility, MdThumbUp, MdThumbUpOffAlt } from "react-icons/md";
 // BsChatDotsFill: 댓글 색, BsChatDots: 댓글 테두리
 import { BsChatDotsFill, BsChatDots } from "react-icons/bs";
+import {compareDate} from "../utils/util";
 
 interface postProps {
   data: postData;
@@ -61,7 +62,7 @@ const PostDetail: NextPage<postProps> = ({ data }: postProps) => {
         />
         <p className="text-gray-300">{post.writerNickName}</p>
         <p className="text-gray-300">
-          {post.categoryName} ㆍ {} 분전
+          {post.categoryName}  ㆍ {compareDate(post.writtenAt)
         </p>
       </div>
       <div>

@@ -9,6 +9,7 @@ import { postData } from "../types/communityType";
 import { MdVisibility, MdThumbUp, MdThumbUpOffAlt } from "react-icons/md";
 // BsChatDotsFill: 댓글 색, BsChatDots: 댓글 테두리
 import { BsChatDotsFill, BsChatDots } from "react-icons/bs";
+import { compareDate } from "../utils/util";
 
 interface postProps {
   data: postData;
@@ -31,25 +32,6 @@ const Post: NextPage<postProps> = ({ data }: postProps) => {
   // 이미지 src 파서
   const imgSrc = (url: string | null) => {
     return url ? url : "";
-  };
-
-  // 작성 시간 파서
-  const compareDate = (date: string) => {
-    const dateObj = new Date(date);
-    const now = new Date();
-    const diff = now.getTime() - dateObj.getTime();
-    const day = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hour = Math.floor(diff / (1000 * 60 * 60));
-    const minute = Math.floor(diff / (1000 * 60));
-    if (day > 0) {
-      return date.slice(2, 10);
-    } else if (hour > 0) {
-      return `${hour}시간 전`;
-    } else if (minute > 0) {
-      return `${minute}분 전`;
-    } else {
-      return `방금 전`;
-    }
   };
 
   return (
