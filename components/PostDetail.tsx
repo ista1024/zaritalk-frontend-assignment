@@ -15,17 +15,6 @@ interface postProps {
 }
 
 const PostDetail: NextPage<postProps> = ({ data }: postProps) => {
-  // viewCount 반영을 위한 api 통신
-  /* 코드예제
-   * const result = await axios.post(
-   *   `/api/community/post/viewCount/${post.pk}`,
-   *   {
-   *     postPk: post.pk,
-   *     viewer: viewer | null,
-   *   }
-   * );
-   */
-
   const [post, setPost] = useState<postData>(data);
 
   // 좋아요 눌렀는지 확인 및 카운트 변경
