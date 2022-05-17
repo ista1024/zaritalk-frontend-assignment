@@ -59,6 +59,21 @@ const Home: NextPage = () => {
           </p>
         </div>
       </main>
+
+      <div>
+        <p className="text-center m-2">
+          소스 관리에 대한 부분은 GitHub에도 올라가 있습니다.
+        </p>
+        <p className="text-center m-2">
+          자세한 로그는 깃허브에서 확인 가능하며, 아래 링크를 클릭하세요
+        </p>
+        <p className="text-center m-4">
+          <a href="https://github.com/ista1024/zaritalk-frontend-assignment">
+            GitHub 링크 -
+            https://github.com/ista1024/zaritalk-frontend-assignment
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
