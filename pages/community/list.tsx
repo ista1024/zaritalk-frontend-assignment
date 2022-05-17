@@ -25,7 +25,6 @@ const CommunityList: NextPage = () => {
     const categoryList = await response.json();
     setCategories(categoryList);
   };
-
   // fetch to get post list async function
   const getPosts = async () => {
     const response = await fetch("/api/community/posts");
@@ -33,7 +32,6 @@ const CommunityList: NextPage = () => {
     setPosts(postList);
     setFilteredPosts(postList);
   };
-
   // call all async function on mount
   useEffect(() => {
     (async () => {
