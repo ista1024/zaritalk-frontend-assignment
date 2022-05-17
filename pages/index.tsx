@@ -45,7 +45,7 @@ const Home: NextPage = () => {
         <div className="w-3/4 mt-9">
           <p className={styles.description}>해당 과제에 관한 부가 설명</p>
           <p className="my-1">
-            1. 페이지 전환 시 스크롤 높이 유지는 로컬스토리지(상태관리
+            1. [미구현] 페이지 전환 시 스크롤 높이 유지는 로컬스토리지(상태관리
             라이브러리 등) 전역변수에 clientY 저장하고, useEffect로 mount시
             scrollY로 구현할 예정이었습니다.
           </p>
@@ -54,10 +54,8 @@ const Home: NextPage = () => {
             하므로, API 통신 코드예제를 작성하였습니다.
           </p>
           <p className="my-2">
-            3. 새로운 글 작성시 사진의 추가는 현재 업로드한 사진의 갯수로
-            input을 생성하고 사진 추가 버튼 클릭 시 마지막 input을 클릭하며,
-            업로드 자료는 array로 저장하고, 삭제는 해당 input의 index로 삭제하는
-            것으로 구현할 예정이었습니다.
+            3. 새로운 글 작성시 api 통신을 통해 서버에 저장하는 api 호출 함수를
+            작성하였습니다.
           </p>
         </div>
       </main>
