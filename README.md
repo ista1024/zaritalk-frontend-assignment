@@ -2,6 +2,8 @@
 
 ## 김용태 자리톡 프론트엔드 과제
 ```tsx
+npm install
+&&
 npm run start
 // 혹은
 npm run dev
